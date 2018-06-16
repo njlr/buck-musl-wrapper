@@ -30,13 +30,27 @@ genrule(
   ]), 
 )
 
+genrule(
+  name = 'musl-static-lib', 
+  out = 'libc.a', 
+  cmd = 'cp $(location :musl-build)/lib/libc.a $OUT', 
+)
+
+genrule(
+  name = 'musl-shared-lib', 
+  out = 'libc.so', 
+  cmd = 'cp $(location :musl-build)/lib/libc.so $OUT', 
+)
+
 prebuilt_cxx_library(
   name = 'musl', 
   header_namespace = '', 
   header_dirs = [
-    '//:musl-headers', 
-  ],
-  header_only = True, 
+    ':musl-headers', 
+  ], 
+  preferred_linkage = 'static', 
+  static_lib = ':musl-static-lib', 
+  shared_lib = ':musl-shared-lib', 
   visibility = [
     'PUBLIC', 
   ], 
