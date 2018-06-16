@@ -1,0 +1,11 @@
+[project]
+ignore = .git
+
+[download]
+in_build = true
+
+[cxx]
+cpp = /usr/bin/gcc
+cc = /usr/bin/gcc
+linker_platform = GNU
+untracked_headers = error

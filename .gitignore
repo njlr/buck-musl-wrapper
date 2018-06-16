@@ -1,0 +1,4 @@
+/.buckd/
+/buck-out/
+/.vscode/
+.buckconfig.local
